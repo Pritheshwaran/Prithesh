@@ -600,34 +600,3 @@
     </script>
 </body>
 </html>
-```
-
-### Changes Made for Vertical Transitions:
-
-1. **Removed Horizontal Carousels:**
-   - Sections like Skills, Projects, Services, and Certifications no longer use horizontal carousels. Instead, their content is laid out in a grid format, allowing vertical scrolling through the sections.
-
-2. **Vertical Scroll Animations:**
-   - Each section now has a vertical transition as you swipe or scroll. Sections fade in and slide up slightly with a subtle scale effect as they enter the viewport using CSS transitions (`opacity`, `transform`) and JavaScript to detect visibility.
-   - The `visible` class is added dynamically to trigger animations when a section is 80% in view.
-
-3. **Modern UI and Styling:**
-   - **Sections:** Retained glassmorphism effects with gradient overlays, 3D tilt effects on hover, and enhanced shadows for depth.
-   - **Headings:** Smooth slide-in animation with an expanding underline effect when the section becomes visible.
-   - **Items in Grids:** Each item (e.g., skill-item, project-item) fades in and scales up as the section enters the viewport, adding a layered animation effect within the vertical flow.
-   - **Hover Effects:** 3D tilt and shadow effects on hover for all cards, with gradient overlays for a modern look.
-
-4. **Parallax-Like Effect:**
-   - Sections and their content have a slight scale transform to create a sense of depth as you scroll vertically.
-   - The transform includes a vertical slide (`translateY`) and a subtle scale to enhance the vertical transition feel.
-
-5. **Responsive Design:**
-   - The layout remains fully responsive, with adjustments for smaller screens to ensure readability and usability.
-   - Animations are optimized to work smoothly on mobile devices during vertical swiping/scrolling.
-
-### Result:
-- As you swipe or scroll down the website, each section transitions vertically with a fade-in, slide-up, and scale animation, creating a smooth and modern flow.
-- Individual items within sections (like skills, projects, etc.) also animate as part of the section's vertical transition, enhancing the overall experience.
-- The UI remains modern with glassmorphism, gradients, and 3D effects, but the focus is now on vertical transitions between sections rather than horizontal swiping within them.
-
-Let me know if you'd like further adjustments!
