@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pritheshwaran A - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #f7f9fc;
+            color: #1a1a1a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: background 0.5s ease;
+        }
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        nav .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #007acc;
+            letter-spacing: 1px;
+            transition: transform 0.3s ease;
+        }
+        nav .logo:hover {
+            transform: scale(1.05);
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin-left: 35px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: #007acc;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        nav ul li a:hover {
+            color: #007acc;
+        }
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #007acc 0%, #003f7f 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            top: 0;
+            left: 0;
+            z-index: 1;
+            animation: pulse 5s infinite ease-in-out;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+        }
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+        }
+        .particle:nth-child(1) { width: 10px; height: 10px; top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 15px; height: 15px; top: 50%; left: 80%; animation-delay: 2s; }
+        .particle:nth-child(3) { width: 8px; height: 8px; top: 70%; left: 30%; animation-delay: 4s; }
+        .particle:nth-child(4) { width: 12px; height: 12px; top: 30%; left: 60%; animation-delay: 6s; }
+        .particle:nth-child(5) { width: 9px; height: 9px; top: 80%; left: 90%; animation-delay: 8s; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.5; }
+            50% { transform: translateY(-50px) translateX(20px); opacity: 1; }
+        }
+        .hero-content {
+            position: relative;
+            z-index: 3;
+        }
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            opacity: 0;
+            animation: textGlow 1.5s forwards 0.5s;
+        }
+        @keyframes textGlow {
+            0% { opacity: 0; filter: blur(5px); transform: scale(0.95); }
+            100% { opacity: 1; filter: blur(0); transform: scale(1); }
+        }
+        .hero p {
+            font-size: 24px;
+            
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeIn 1s forwards 1s;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        .hero button {
+            padding: 16px 50px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border: 2px solid transparent;
+            border-image: linear-gradient(to right, #007acc, #003f7f) 1;
+            border-radius: 50px;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 1s forwards 1.5s;
+        }
+        .hero button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        .hero button:hover::before {
+            left: 100%;
+        }
+        .hero button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+        section {
+            padding: 100px 60px;
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 60vh;
+            opacity: 0;
+            transform: translateY(100px) scale(0.95);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        section.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        section h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 50px;
+            color: #007acc;
+            position: relative;
+            display: inline-block;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        section.visible h2 {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        section h2::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, #007acc, transparent);
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 0;
+            transition: width 1s ease 0.3s;
+        }
+        section.visible h2::after {
+            width: 60px;
+        }
+        .about, .experience, .contact {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        .about::before, .experience::before, .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 122, 204, 0.1), transparent);
+            z-index: -1;
+            transition: opacity 0.5s ease;
+            opacity: 0;
+        }
+        .about:hover::before, .experience:hover::before, .contact:hover::before {
+            opacity: 1;
+        }
+        .about:hover, .experience:hover, .contact:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        .about p, .about ul, .experience p, .contact p {
+            font-size: 16px;
+            color: #444;
+            transition: color 0.3s ease;
+        }
+        .about:hover p, .about:hover ul, .experience:hover p, .contact:hover p {
+            color: #1a1a1a;
+        }
+        .skills-grid, .projects-grid, .services-grid, .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        .skill-item, .project-item, .service-item, .certification-item {
+            padding: 30px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        section.visible .skill-item, section.visible .project-item, section.visible .service-item, section.visible .certification-item {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .skill-item::before, .project-item::before, .service-item::before, .certification-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 122, 204, 0.1), transparent);
+            z-index: -1;
+            transition: opacity 0.5s ease;
+            opacity: 0;
+        }
+        .skill-item:hover::before, .project-item:hover::before, .service-item:hover::before, .certification-item:hover::before {
+            opacity: 1;
+        }
+        .skill-item:hover, .project-item:hover, .service-item:hover, .certification-item:hover {
+            transform: translateY(-15px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        .skill-item h3, .project-item h3, .service-item h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        .skill-item p, .project-item p, .service-item p, .certification-item p {
+            font-size: 16px;
+            color: #444;
+        }
+        .experience h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        .project-item a, .contact-links a {
+            color: #007acc;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .project-item a::after, .contact-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            background-color: #007acc;
+            bottom: -2px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        .project-item a:hover::after, .contact-links a:hover::after {
+            width: 100%;
+        }
+        .project-item a:hover, .contact-links a:hover {
+            color: #003f7f;
+        }
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #007acc 0%, #003f7f 100%);
+            color: white;
+            font-weight: 300;
+            position: relative;
+            overflow: hidden;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            top: -50%;
+            left: -50%;
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 30px;
+            }
+            nav .logo {
+                font-size: 22px;
+            }
+            nav ul li {
+                margin-left: 20px;
+            }
+            nav ul li a {
+                font-size: 14px;
+            }
+            .hero h1 {
+                font-size: 40px;
+            }
+            .hero p {
+                font-size: 18px;
+            }
+            .hero button {
+                padding: 12px 30px;
+                font-size: 14px;
+            }
+            section {
+                padding: 60px 30px;
+            }
+            section h2 {
+                font-size: 32px;
+            }
+            .about, .experience, .contact {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Pritheshwaran A</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Hi, I’m Pritheshwaran A</h1>
+            <p>A Data Analytics & AI/ML Enthusiast</p>
+            <button onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">View My Work</button>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about">
+            <p>I’m a passionate and results-driven Computer Science and Engineering student, currently pursuing my B.E. with a specialization in Artificial Intelligence and Machine Learning at Rajalakshmi Institute of Technology. My journey is driven by a curiosity for innovative, data-driven solutions and a commitment to creating meaningful impacts through technology. I enjoy collaborating on challenging projects, continuously learning new technologies, and pushing the boundaries of AI and ML applications.</p>
+            <p><strong>Educational Background:</strong></p>
+            <ul>
+                <li>Schooling: Shepherds Matric HR. Sec. School (SSLC: 98.4%, HSE: 92.3%)</li>
+                <li>Undergraduate: Rajalakshmi Institute of Technology, B.E. in Computer Science and Engineering with AIML (Nov 2022 – May 2026), CGPA: 8.62 (up to 5th semester)</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills & Expertise</h2>
+        <div class="skills">
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <h3>Programming Languages</h3>
+                    <p>Python, Java, SQL, HTML, CSS</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Data Science & Visualization</h3>
+                    <p>pandas, NumPy, Matplotlib, Seaborn</p>
+                </div>
+                <div class="skill-item">
+                    <h3>AI & ML</h3>
+                    <p>Building ML models, analyzing data trends</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Tools & Platforms</h3>
+                    <p>Git, VS Code, Figma</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Web Development</h3>
+                    <p>Basic UI/UX interfaces with HTML/CSS</p>
+                </div>
+                <div class="skill-item">
+                    <h3>Soft Skills</h3>
+                    <p>Collaboration, problem-solving, leadership</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Work Experience</h2>
+        <div class="experience">
+            <h3>Data Analyst Intern at Null Class (Jan 2025 – Feb 2025)</h3>
+            <p>Conducted real-time Google Play Store data analytics using Python. Created interactive charts (stacked bar, grouped bar, bubble, violin plots). Generated insights on app performance and trends.</p>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects">
+            <div class="projects-grid">
+                <div class="project-item">
+                    <h3>VitalCheck AI</h3>
+                    <p>AI-powered healthcare assistant that predicts diseases based on symptoms using Google Gemini AI. Interactive and privacy-focused UI built with Streamlit.</p>
+                    <a href="https://github.com/Pritheshwaran" target="_blank">GitHub Repo</a>
+                </div>
+                <div class="project-item">
+                    <h3>Weather Forecasting API</h3>
+                    <p>Deployed API for accurate weather predictions and integrated predictive analytics.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Data Analyst Internship Visualizations</h3>
+                    <p>Interactive charts and insights from Google Play Store datasets.</p>
+                    <a href="https://github.com/Pritheshwaran" target="_blank">Internship Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Services Offered</h2>
+        <div class="services">
+            <div class="services-grid">
+                <div class="service-item">
+                    <h3>Data Analysis & Visualization</h3>
+                    <p>Transform raw data into actionable insights with interactive visualizations.</p>
+                </div>
+                <div class="service-item">
+                    <h3>AI/ML-Driven Solutions</h3>
+                    <p>Develop models and solutions for predictive analytics and automation.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Basic Front-End Web Development</h3>
+                    <p>Create user-friendly interfaces with a focus on data insights and UX.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2>Certifications & Achievements</h2>
+        <div class="certifications">
+            <div class="certifications-grid">
+                <div class="certification-item">
+                    <p><strong>Certifications:</strong> Introduction to AI (Infosys), MongoDB, Machine Learning with Python, Programming Techniques (Bharathidasan University).</p>
+                </div>
+                <div class="certification-item">
+                    <p><strong>Achievements:</strong> Smart India Hackathon participation, athletics championship winner.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact">
+            <div class="contact-links">
+                <p><strong>Email:</strong> <a href="mailto:pritheshp321@gmail.com">pritheshp321@gmail.com</a></p>
+                <p><strong>Phone:</strong> <a href="tel:7358822995">7358822995</a></p>
+                <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/pritheshwaran-a-a32028257" target="_blank">linkedin.com/in/pritheshwaran-a</a></p>
+                <p><strong>GitHub:</strong> <a href="https://github.com/Pritheshwaran" target="_blank">github.com/Pritheshwaran</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Pritheshwaran A. All rights reserved.</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+
+            // Vertical scroll animation for sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (sectionTop < windowHeight * 0.8) {
+                    section.classList.add('visible');
+                } else {
+                    section.classList.remove('visible');
+                }
+            });
+        });
+
+        // Trigger initial visibility check
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (sectionTop < windowHeight * 0.8) {
+                    section.classList.add('visible');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+```
+
+### Changes Made for Vertical Transitions:
+
+1. **Removed Horizontal Carousels:**
+   - Sections like Skills, Projects, Services, and Certifications no longer use horizontal carousels. Instead, their content is laid out in a grid format, allowing vertical scrolling through the sections.
+
+2. **Vertical Scroll Animations:**
+   - Each section now has a vertical transition as you swipe or scroll. Sections fade in and slide up slightly with a subtle scale effect as they enter the viewport using CSS transitions (`opacity`, `transform`) and JavaScript to detect visibility.
+   - The `visible` class is added dynamically to trigger animations when a section is 80% in view.
+
+3. **Modern UI and Styling:**
+   - **Sections:** Retained glassmorphism effects with gradient overlays, 3D tilt effects on hover, and enhanced shadows for depth.
+   - **Headings:** Smooth slide-in animation with an expanding underline effect when the section becomes visible.
+   - **Items in Grids:** Each item (e.g., skill-item, project-item) fades in and scales up as the section enters the viewport, adding a layered animation effect within the vertical flow.
+   - **Hover Effects:** 3D tilt and shadow effects on hover for all cards, with gradient overlays for a modern look.
+
+4. **Parallax-Like Effect:**
+   - Sections and their content have a slight scale transform to create a sense of depth as you scroll vertically.
+   - The transform includes a vertical slide (`translateY`) and a subtle scale to enhance the vertical transition feel.
+
+5. **Responsive Design:**
+   - The layout remains fully responsive, with adjustments for smaller screens to ensure readability and usability.
+   - Animations are optimized to work smoothly on mobile devices during vertical swiping/scrolling.
+
+### Result:
+- As you swipe or scroll down the website, each section transitions vertically with a fade-in, slide-up, and scale animation, creating a smooth and modern flow.
+- Individual items within sections (like skills, projects, etc.) also animate as part of the section's vertical transition, enhancing the overall experience.
+- The UI remains modern with glassmorphism, gradients, and 3D effects, but the focus is now on vertical transitions between sections rather than horizontal swiping within them.
+
+Let me know if you'd like further adjustments!
